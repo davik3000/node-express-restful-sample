@@ -4,9 +4,13 @@ Code taken from [this tutorial](https://scotch.io/tutorials/build-a-restful-api-
 
 
 Remember to use "--no-bin-links" flag when using Yarn on a VirtualBox synced folder shared with a Windows host folder
+
 OR
+
 Run virtualbox as administrator
+
 OR
+
 If you don't want to, you can allow creating symbolic links for all users:
 - Open the Local Group Policy Editor (gpedit.msc)
 - Edit the Create symbolic links policy at:
