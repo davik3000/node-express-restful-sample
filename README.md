@@ -1,8 +1,10 @@
 # node-express-restful-sample
 
-Code taken from [this tutorial](https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4)
+Code taken/inspired from [this tutorial](https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4)
 
+Experiment: Use sqlite3, to obtain a serverless DB to use instead of MongoDB.
 
+Note:
 Remember to use "--no-bin-links" flag when using Yarn on a VirtualBox synced folder shared with a Windows host folder
 
 OR
