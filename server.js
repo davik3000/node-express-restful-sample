@@ -22,6 +22,11 @@ const dbUri = "mongodb://localhost:27017/nodetest1";
 
 // open db
 mongoose.connect(dbUri, { useMongoClient: true });
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "Connection error:"));
+db.once("open", function() {
+    console.log("Successfully connected to the MongoDB instance");
+});
 
 // configure to use bodyParser, to get data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,15 +40,32 @@ router.use(function(req, res, next) {
     next();
 });
 
+// GET
 router.get(rootPath, function(req, res) {
-    res.json({ message: "Welcome to our api" } );
+    res.json({ message: "Welcome to our api" });
 });
 
+router.get(itemsPath, function(req, res) {
+    Item.find(function(err, items) {
+        if (err) {
+            res.send(err);
+        }
+        
+        res.json(items);
+    });
+});
+// POST
 router.post(itemsPath, function(req, res) {
+    console.log("Received a POST request");
+
     var item = new Item();
     item.id = req.body.id;
 
-    item.save(function(err) {
+    console.log("Saving item with id", item.id);
+
+    var promise = item.save();
+    console.log(promise instanceof require('mpromise'));
+    promise.then(function(err) {
         if (err) {
             res.send(err);
         }
